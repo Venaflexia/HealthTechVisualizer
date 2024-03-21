@@ -16,6 +16,9 @@ namespace HealthTechVisualizer
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("Font Awesome 6 Brands-Regular-400.otf", "BRO");
+                    fonts.AddFont("Font Awesome 6 Free-Regular-400.otf", "FRO");
+                    fonts.AddFont("Font Awesome 6 Free-Solid-900.otf", "FSO");
                 });
 
 #if DEBUG

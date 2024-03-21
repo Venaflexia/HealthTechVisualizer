@@ -5,11 +5,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:HealthTechVisualizer"
     Shell.FlyoutBehavior="Disabled"
-    Title="HealthTechVisualizer">
+    Title="HealthTech Visualizer"
+    xmlns:Views="clr-namespace:HealthTechVisualizer.Mvvm.Views"
+    Shell.TitleColor="White"
+    Shell.BackgroundColor="#4D4D4D"
+    >
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
+        Title=""
+        ContentTemplate="{DataTemplate Views:VisualizerPage}"
         Route="MainPage" />
 
 </Shell>
