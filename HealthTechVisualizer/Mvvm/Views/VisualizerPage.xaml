@@ -36,14 +36,25 @@
             <ScrollView>
                 <StackLayout Spacing="15" Padding="0,20,0,15" BackgroundColor="#252525">
                     <StackLayout>
-                        <StackLayout Margin="0,0,0,15" Padding="15,0" Orientation="Horizontal">
-                            <Label FontSize="20" Text="&#xf053;" FontFamily="FSO" VerticalOptions="Center"/>
-                            <Label FontAttributes="Bold" FontSize="20" HorizontalOptions="CenterAndExpand" Text="Marker" VerticalOptions="Center"/>
-                            <Label FontSize="20" Text="&#xf054;" FontFamily="FSO" VerticalOptions="Center"/>
+                        <StackLayout Padding="15,0" Orientation="Horizontal">
+                            <Label FontSize="20" Text="&#xf053;" FontFamily="FSO" VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="HeaderChangerTap" CommandParameter="Back"></TapGestureRecognizer>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Label x:Name="MenuTitle" FontAttributes="Bold" FontSize="20" HorizontalOptions="CenterAndExpand" Text="Marker" VerticalOptions="Center"/>
+                            <Label FontSize="20" Text="&#xf054;" FontFamily="FSO" VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="HeaderChangerTap" CommandParameter="Next"/>
+                                </Label.GestureRecognizers>
+                            </Label>
                         </StackLayout>
                     </StackLayout>
-
-                    <StackLayout VerticalOptions="FillAndExpand" Spacing="15"  BackgroundColor="#252525">
+                    <IndicatorView IsEnabled="False" Margin="0,0,0,15" x:Name="TitleIndicator"/>
+                    <Grid VerticalOptions="FillAndExpand" BackgroundColor="#252525">
+                        
+                  
+                    <StackLayout x:Name="MarkerLayout" IsVisible="true" VerticalOptions="FillAndExpand" Spacing="15"  BackgroundColor="#252525">
                         
                   
                     <Tc:Expander>
@@ -276,7 +287,68 @@
                     </Tc:Expander>
 
                     <Label Text="SDÜ | Airteriae"  FontFamily="Times New Roman" VerticalOptions="EndAndExpand" HorizontalOptions="Center"/>
-                </StackLayout>
+                     </StackLayout>
+
+                        <StackLayout x:Name="RaporLayout" IsVisible="false" VerticalOptions="FillAndExpand" Spacing="15" BackgroundColor="#252525">
+                            <Tc:Expander>
+                                <Tc:Expander.Header>
+                                    <Frame BackgroundColor="#3D3B40" 
+            Padding="0" 
+            HeightRequest="50"
+            CornerRadius="0"
+            >
+                                        <StackLayout Padding="15,0" Orientation="Horizontal">
+                                            <Label VerticalOptions="Center" FontAttributes="Bold" Text="My-Rapor"/>
+                                        </StackLayout>
+                                    </Frame>
+                                </Tc:Expander.Header>
+                                <Tc:Expander.Content>
+                                    <Frame BackgroundColor="#252525"  Padding="0" CornerRadius="0">
+                                        <StackLayout HeightRequest="600" Spacing="15">
+                                            <Editor BackgroundColor="White" TextColor="Black" PlaceholderColor="Black" VerticalOptions="FillAndExpand" Placeholder="Write a rapor"/>
+                                            <Button Text="import" CornerRadius="5" HeightRequest="30" FontAttributes="Bold" BackgroundColor="#696C71" TextColor="White"/>
+                                            <Button Text="Export" CornerRadius="5" BackgroundColor="#31363F" FontAttributes="Bold" TextColor="White"/>
+                                            <StackLayout Padding="15,0,0,0" Orientation="Horizontal">
+                                                <Label HorizontalOptions="StartAndExpand" Text="Contrast" VerticalOptions="Center"/>
+                                                <Switch VerticalOptions="Center"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                     
+                                    </Frame>
+                                </Tc:Expander.Content>
+                            </Tc:Expander>
+                            <Tc:Expander>
+                                <Tc:Expander.Header>
+                                    <Frame BackgroundColor="#3D3B40" 
+Padding="0" 
+HeightRequest="50"
+CornerRadius="0"
+>
+                                        <StackLayout Padding="15,0" Orientation="Horizontal">
+                                            <Label VerticalOptions="Center" FontAttributes="Bold" Text="AI-Rapor"/>
+                                        </StackLayout>
+                                    </Frame>
+                                </Tc:Expander.Header>
+                                <Tc:Expander.Content>
+                                    <Frame BackgroundColor="#252525"  Padding="0" CornerRadius="0">
+                                        <StackLayout HeightRequest="600" Spacing="15">
+                                            <Editor BackgroundColor="White" TextColor="Black" PlaceholderColor="Black" VerticalOptions="FillAndExpand" Placeholder="Get Ai-Rapor"/>
+                                            <Button Text="Get Rapor" CornerRadius="5" HeightRequest="30" FontAttributes="Bold" BackgroundColor="#696C71" TextColor="White"/>
+                                            <Button Text="Export" CornerRadius="5" BackgroundColor="#31363F" FontAttributes="Bold" TextColor="White"/>
+                                            <StackLayout Padding="15,0,0,0" Orientation="Horizontal">
+                                                <Label HorizontalOptions="StartAndExpand" Text="Contrast" VerticalOptions="Center"/>
+                                                <Switch VerticalOptions="Center"/>
+                                            </StackLayout>
+                                        </StackLayout>
+
+                                    </Frame>
+                                </Tc:Expander.Content>
+                            </Tc:Expander>
+                            <Label Text="SDÜ | Airteriae"  FontFamily="Times New Roman" VerticalOptions="EndAndExpand" HorizontalOptions="Center"/>
+
+                        </StackLayout>
+                        
+                    </Grid>
                 </StackLayout>
             </ScrollView>
 
