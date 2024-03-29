@@ -42,13 +42,20 @@ public partial class VisualizerPage : ContentPage
         TitleIndicator.Position = MenuIndex;
         switch (MenuIndex)
         {
+            case 0:
+                VisualizerLayout.IsVisible = true;
+                MarkerLayout.IsVisible = false;
+                RaporLayout.IsVisible = false;
+                break;
             case 1:
                 MarkerLayout.IsVisible = true;
                 RaporLayout.IsVisible = false;
+                VisualizerLayout.IsVisible = false;
                 break;
             case 2:
                 MarkerLayout.IsVisible = false;
                 RaporLayout.IsVisible = true;
+                VisualizerLayout.IsVisible = false;
                 break;
         }
     }

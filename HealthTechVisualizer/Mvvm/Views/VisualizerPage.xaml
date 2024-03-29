@@ -223,49 +223,7 @@
                             </Frame>
                         </Tc:Expander.Content>
                     </Tc:Expander>
-                    <Tc:Expander>
-                        <Tc:Expander.Header>
-                            <Frame BackgroundColor="#3D3B40" 
-               Padding="0" 
-               HeightRequest="50"
-               CornerRadius="0"
-               >
-                                <StackLayout Padding="15,0" Orientation="Horizontal">
-                                    <Label VerticalOptions="Center" FontAttributes="Bold" Text="AI-Visualizer"/>
-                                </StackLayout>
-                            </Frame>
-                        </Tc:Expander.Header>
-                        <Tc:Expander.Content>
-                            <Frame  Padding="0" CornerRadius="0" BackgroundColor="Transparent">
-                                <StackLayout Padding="15" Spacing="15">
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label VerticalOptions="Center" HorizontalOptions="StartAndExpand" Text="AI-Mode"/>
-                                        <Switch VerticalOptions="Center"/>
-                                    </StackLayout>
-                                    <Picker Title="Line Color" TitleColor="White"/>
-                                    <StackLayout>
-                                        <Label Text="AI-Line Thickess" HorizontalTextAlignment="Start"></Label>
-                                        <StackLayout Orientation="Horizontal">
-                                            <Slider Value="5" Minimum="0" VerticalOptions="Center" Maximum="20" HorizontalOptions="FillAndExpand"/>
-                                            <Label Text="5" VerticalOptions="Center"/>
-                                        </StackLayout>
-
-                                    </StackLayout>
-
-                                    <Picker Title="Point Color" TitleColor="White"/>
-                                    <StackLayout>
-                                        <Label Text="AI Point Size" HorizontalTextAlignment="Start"></Label>
-                                        <StackLayout Orientation="Horizontal">
-                                            <Slider Value="5" Minimum="0" VerticalOptions="Center" Maximum="20" HorizontalOptions="FillAndExpand"/>
-                                            <Label Text="5" VerticalOptions="Center"/>
-                                        </StackLayout>
-
-                                    </StackLayout>
-                                </StackLayout>
-
-                            </Frame>
-                        </Tc:Expander.Content>
-                    </Tc:Expander>
+                   
                     <Tc:Expander>
                         <Tc:Expander.Header>
                             <Frame BackgroundColor="#3D3B40" Padding="0" HeightRequest="50" CornerRadius="0">
@@ -289,7 +247,7 @@
                     <Label Text="SDÜ | Airteriae"  FontFamily="Times New Roman" VerticalOptions="EndAndExpand" HorizontalOptions="Center"/>
                      </StackLayout>
 
-                        <StackLayout x:Name="RaporLayout" IsVisible="false" VerticalOptions="FillAndExpand" Spacing="15" BackgroundColor="#252525">
+                    <StackLayout x:Name="RaporLayout" IsVisible="false" VerticalOptions="FillAndExpand" Spacing="15" BackgroundColor="#252525">
                             <Tc:Expander>
                                 <Tc:Expander.Header>
                                     <Frame BackgroundColor="#3D3B40" 
@@ -347,7 +305,99 @@ CornerRadius="0"
                             <Label Text="SDÜ | Airteriae"  FontFamily="Times New Roman" VerticalOptions="EndAndExpand" HorizontalOptions="Center"/>
 
                         </StackLayout>
-                        
+
+                        <StackLayout x:Name="VisualizerLayout" IsVisible="false" VerticalOptions="FillAndExpand" Spacing="15" BackgroundColor="#252525">
+                            <Tc:Expander>
+                                <Tc:Expander.Header>
+                                    <Frame BackgroundColor="#3D3B40" 
+            Padding="0" 
+            HeightRequest="50"
+            CornerRadius="0"
+            >
+                                        <StackLayout Padding="15,0" Orientation="Horizontal">
+                                            <Label VerticalOptions="Center" FontAttributes="Bold" Text="Images"/>
+                                        </StackLayout>
+                                    </Frame>
+                                </Tc:Expander.Header>
+                                <Tc:Expander.Content>
+                                    <Frame BackgroundColor="#252525"  Padding="0" CornerRadius="0">
+                                        <StackLayout HeightRequest="400" Spacing="15">
+                                            <CollectionView SelectionMode="Single" VerticalOptions="FillAndExpand">
+                                                <CollectionView.ItemsSource>
+                                                    <x:Array Type="{x:Type x:String}">
+                                                        <x:String>Image-1</x:String>
+                                                        <x:String>Image-2</x:String>
+                                                        <x:String>Image-3</x:String>
+                                                        <x:String>Image-4</x:String>
+                                                        <x:String>Image-5</x:String>
+                                                        <x:String>Image-6</x:String>
+                                                    </x:Array>
+                                                </CollectionView.ItemsSource>
+                                                <CollectionView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <StackLayout>
+                                                            <Label Text="{Binding .}" TextColor="White" HorizontalOptions="Start"/>
+                                                            <Image Source="images.jpg" HeightRequest="70"/>
+                                                        </StackLayout>
+                                                    </DataTemplate>
+                                                </CollectionView.ItemTemplate>
+                                            </CollectionView>
+                                            <Button Text="import" CornerRadius="5" HeightRequest="30" FontAttributes="Bold" BackgroundColor="#696C71" TextColor="White"/>
+                                          
+                                        </StackLayout>
+
+                                    </Frame>
+                                </Tc:Expander.Content>
+                            </Tc:Expander>
+                            <Tc:Expander>
+                                <Tc:Expander.Header>
+                                    <Frame BackgroundColor="#3D3B40" 
+Padding="0" 
+HeightRequest="50"
+CornerRadius="0"
+>
+                                        <StackLayout Padding="15,0" Orientation="Horizontal">
+                                            <Label VerticalOptions="Center" FontAttributes="Bold" Text="AI-Visualizer"/>
+                                        </StackLayout>
+                                    </Frame>
+                                </Tc:Expander.Header>
+                                <Tc:Expander.Content>
+                                    <Frame  Padding="0" CornerRadius="0" BackgroundColor="Transparent">
+                                        <StackLayout Padding="15" Spacing="15">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label VerticalOptions="Center" HorizontalOptions="StartAndExpand" Text="AI-Mode"/>
+                                                <Switch VerticalOptions="Center"/>
+                                            </StackLayout>
+                                            <Picker Title="Line Color" TitleColor="White"/>
+                                            <StackLayout>
+                                                <Label Text="AI-Line Thickess" HorizontalTextAlignment="Start"></Label>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Slider Value="5" Minimum="0" VerticalOptions="Center" Maximum="20" HorizontalOptions="FillAndExpand"/>
+                                                    <Label Text="5" VerticalOptions="Center"/>
+                                                </StackLayout>
+
+                                            </StackLayout>
+
+                                            <Picker Title="Point Color" TitleColor="White"/>
+                                            <StackLayout>
+                                                <Label Text="AI Point Size" HorizontalTextAlignment="Start"></Label>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Slider Value="5" Minimum="0" VerticalOptions="Center" Maximum="20" HorizontalOptions="FillAndExpand"/>
+                                                    <Label Text="5" VerticalOptions="Center"/>
+                                                </StackLayout>
+
+                                            </StackLayout>
+                                        </StackLayout>
+
+                                    </Frame>
+                                </Tc:Expander.Content>
+                            </Tc:Expander>
+                            <Label Text="SDÜ | Airteriae"  FontFamily="Times New Roman" VerticalOptions="EndAndExpand" HorizontalOptions="Center"/>
+
+                        </StackLayout>
+
+
+
                     </Grid>
                 </StackLayout>
             </ScrollView>
@@ -363,11 +413,13 @@ CornerRadius="0"
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="45"/>
                     </Grid.RowDefinitions>
-                    <Tc:MediaElement   ShouldShowPlaybackControls="False" x:Name="MediaElement1" BackgroundColor="Black" Grid.ColumnSpan="2">
+                    <Image Source="memekanseri.jpg" Margin="5" BackgroundColor="Transparent" Grid.ColumnSpan="2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Aspect="AspectFit"/>
+
+                    <Tc:MediaElement BackgroundColor="Transparent"  ShouldShowPlaybackControls="False" x:Name="MediaElement1"  Grid.ColumnSpan="2">
 
                     </Tc:MediaElement>
                     <AbsoluteLayout x:Name="GoniometerAbsoluteLayout" Grid.ColumnSpan="2" BackgroundColor="Transparent"/>
-                    <Tc:DrawingView ZIndex="3" LineColor="Red" IsEnabled="False"  x:Name="DrawingViewVisualizer" BackgroundColor="Transparent" Grid.ColumnSpan="2"/>
+                   <Tc:DrawingView ZIndex="3" LineColor="Red" IsEnabled="False"  x:Name="DrawingViewVisualizer" BackgroundColor="Transparent" Grid.ColumnSpan="2"/>
                     <StackLayout Spacing="15" Orientation="Horizontal" Padding="15,0"  Grid.Row="1" Grid.ColumnSpan="2">
                         <Label VerticalOptions="Center" Text="&#xf04a;" FontFamily="FSO"/>
                         <Label VerticalOptions="Center" Text="&#xf0c8;" FontFamily="FSO">
