@@ -2,15 +2,16 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HealthTechVisualizer.Mvvm.Views.VisualizerPage"
-             xmlns:Tc="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+             xmlns:Tc="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:Vm="clr-namespace:HealthTechVisualizer.Mvvm.ViewModels">
 
     <ContentPage.MenuBarItems>
         <MenuBarItem Text="File">
             <MenuFlyoutSubItem Text="Open">
-                <MenuFlyoutItem  Text="Video"/>
+                <MenuFlyoutItem Clicked="MenuFlyoutItem_ClickedOpenVideo" Text="Video"/>
             </MenuFlyoutSubItem>
             <MenuFlyoutSubItem Text="Close">
-                <MenuFlyoutItem Text="Close Project"/>
+                <MenuFlyoutItem Text="Close Project" Clicked="MenuFlyoutItem_ClickedCloseProject"/>
                 <MenuFlyoutItem Text="Close Solution"/>
             </MenuFlyoutSubItem>
         </MenuBarItem>
@@ -24,7 +25,11 @@
         <Style TargetType="Picker">
             <Setter Property="BackgroundColor" Value="Black"/>
         </Style>
+        <Vm:DrawingVm x:Key="VmDrawing"/>
     </ContentPage.Resources>
+
+  
+    
     
     <ContentPage.Content>
         <Grid>
@@ -35,6 +40,7 @@
             
             <ScrollView>
                 <StackLayout Spacing="15" Padding="0,20,0,15" BackgroundColor="#252525">
+                
                     <StackLayout>
                         <StackLayout Padding="15,0" Orientation="Horizontal">
                             <Label FontSize="20" Text="&#xf053;" FontFamily="FSO" VerticalOptions="Center">
@@ -55,50 +61,7 @@
                         
                   
                     <StackLayout x:Name="MarkerLayout" IsVisible="true" VerticalOptions="FillAndExpand" Spacing="15"  BackgroundColor="#252525">
-                        
-                  
-                    <Tc:Expander>
-                        <Tc:Expander.Header>
-                            <Frame BackgroundColor="#3D3B40" 
-                              Padding="0" 
-                              HeightRequest="50"
-                              CornerRadius="0"
-                              >
-                                <StackLayout Padding="15,0" Orientation="Horizontal">
-                                    <Label VerticalOptions="Center" FontAttributes="Bold" Text="Recent"/>
-                                </StackLayout>
-                            </Frame>
-                        </Tc:Expander.Header>
-                        <Tc:Expander.Content>
-                            <Frame  Padding="0" CornerRadius="0">
-                                <StackLayout Spacing="15">
-                                    <Entry Placeholder="Video-Link" TextColor="DodgerBlue" />
-                                    <CollectionView SelectionMode="Single">
-                                        <CollectionView.ItemsSource>
-                                            <x:Array Type="{x:Type x:String}">
-                                                <x:String>C:\Users\Babürşah Baz\Downloads</x:String>
-                                                <x:String>C:\Users\Babürşah Baz\Downloads</x:String>
-                                                <x:String>C:\Users\Babürşah Baz\Downloads</x:String>
-                                                <x:String>C:\Users\Babürşah Baz\Downloads</x:String>
-                                                <x:String>C:\Users\Babürşah Baz\Downloads</x:String>
-                                            </x:Array>
-                                        </CollectionView.ItemsSource>
-
-                                        <CollectionView.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackLayout BackgroundColor="#252525" Padding="0"  HeightRequest="40">
-                                                    <Label Padding="15,0" VerticalOptions="CenterAndExpand" Text="{Binding .}"/>
-                                                    <BoxView HeightRequest="1" BackgroundColor="LightGray"/>
-                                                </StackLayout>
-
-                                            </DataTemplate>
-                                        </CollectionView.ItemTemplate>
-                                    </CollectionView>
-                                </StackLayout>
-
-                            </Frame>
-                        </Tc:Expander.Content>
-                    </Tc:Expander>
+                                                        
                     <Tc:Expander>
                         <Tc:Expander.Header>
                             <Frame BackgroundColor="#3D3B40" 
@@ -182,7 +145,7 @@
                         </Tc:Expander.Content>
 
                     </Tc:Expander>
-                    <Tc:Expander>
+                    <Tc:Expander >
                         <Tc:Expander.Header>
                             <Frame  BackgroundColor="#3D3B40" Padding="0" HeightRequest="50" CornerRadius="0">
                                 <StackLayout Padding="15,0" Orientation="Horizontal">
@@ -192,14 +155,16 @@
                         </Tc:Expander.Header>
                         <Tc:Expander.Content>
                             <Frame CornerRadius="0" BackgroundColor="Transparent" Padding="0">
-                                <StackLayout Padding="0,15,0,0"  Spacing="15" >
+
+
+                                  <StackLayout  Padding="0,15,0,0"  Spacing="15" >
                                     <StackLayout Orientation="Horizontal">
                                         <Label Margin="15,0,0,0" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Text="Drawing Mode"/>
-                                        <Switch x:Name="DrawingSwitch" Margin="0" IsToggled="False" VerticalOptions="Center" />
+                                        <Switch x:Name="DrawingSwitch" Toggled="Switch_ToggledDrawingEnable" Margin="0" IsToggled="False" VerticalOptions="Center" />
                                     </StackLayout>
-
-                                    <StackLayout Padding="15,0">
-                                        <Picker  x:Name="ColorPicker" BackgroundColor="Black" Title="Color Picker" TitleColor="White">
+                                           
+                                   <StackLayout Padding="15,0">
+                                        <Picker  x:Name="ColorPicker" SelectedIndexChanged="Picker_SelectedIndexChangedLineColor" BackgroundColor="Black" Title="Color Picker" TitleColor="White">
                                         </Picker>
                                     </StackLayout>
                                     <StackLayout >
@@ -208,17 +173,18 @@
                                             <Slider                                              
                                                VerticalOptions="Center"
                                                x:Name="DrawingThicknessSlider"
-                                               Minimum="1" Value="5" Maximum="30" HorizontalOptions="FillAndExpand"
+                                                ValueChanged="mySlider_ValueChangedDrawingView"
+                                               Minimum="1" Value="10" Maximum="100" HorizontalOptions="FillAndExpand"
                                                    MinimumTrackColor="WhiteSmoke"
                                                    MaximumTrackColor="DimGray"/>
                                             <Label FontSize="20" FontAttributes="Bold" VerticalOptions="Center" Text="{Binding Source={x:Reference DrawingThicknessSlider},Path=Value,StringFormat='{0:f0}'}"/>
                                         </StackLayout>
-                                        <StackLayout Padding="15,0" Orientation="Horizontal">
+                                        <StackLayout  Padding="15,0" Orientation="Horizontal">
                                             <Label Text="Multi Line" VerticalOptions="Center" HorizontalOptions="StartAndExpand"/>
-                                            <Switch VerticalOptions="Center"/>
+                                                    <Switch Toggled="Switch_ToggledMultiLine" VerticalOptions="Center"/>
                                         </StackLayout>
                                     </StackLayout>
-                                    <Button  Margin="15,0" Text="Clear" Padding="0" CornerRadius="5" TextColor="White" FontAttributes="Bold" BackgroundColor="#31363F"/>
+                                    <Button  Margin="15,0" Text="Clear" Clicked="Button_ClickedCizimiTemizle" Padding="0" CornerRadius="5" TextColor="White" FontAttributes="Bold" BackgroundColor="#31363F"/>
                                 </StackLayout>
                             </Frame>
                         </Tc:Expander.Content>
@@ -306,7 +272,51 @@ CornerRadius="0"
 
                         </StackLayout>
 
-                        <StackLayout x:Name="VisualizerLayout" IsVisible="false" VerticalOptions="FillAndExpand" Spacing="15" BackgroundColor="#252525">
+                    <StackLayout x:Name="VisualizerLayout" IsVisible="false" VerticalOptions="FillAndExpand" Spacing="15" BackgroundColor="#252525">
+
+                            <Tc:Expander>
+                                <Tc:Expander.Header>
+                                    <Frame BackgroundColor="#3D3B40" 
+             Padding="0" 
+             HeightRequest="50"
+             CornerRadius="0"
+             >
+                                        <StackLayout Padding="15,0" Orientation="Horizontal">
+                                            <Label VerticalOptions="Center" FontAttributes="Bold" Text="Recent"/>
+                                        </StackLayout>
+                                    </Frame>
+                                </Tc:Expander.Header>
+                                <Tc:Expander.Content>
+                                    <Frame  Padding="0" CornerRadius="0">
+                                        <StackLayout Spacing="15">
+                                            <Entry Placeholder="Video-Link" TextColor="DodgerBlue" />
+                                            <CollectionView SelectionMode="Single">
+                                                <CollectionView.ItemsSource>
+                                                    <x:Array Type="{x:Type x:String}">
+                                                        <x:String>C:\Users\Babürşah Baz\Downloads</x:String>
+                                                        <x:String>C:\Users\Babürşah Baz\Downloads</x:String>
+                                                        <x:String>C:\Users\Babürşah Baz\Downloads</x:String>
+                                                        <x:String>C:\Users\Babürşah Baz\Downloads</x:String>
+                                                        <x:String>C:\Users\Babürşah Baz\Downloads</x:String>
+                                                    </x:Array>
+                                                </CollectionView.ItemsSource>
+
+                                                <CollectionView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <StackLayout BackgroundColor="#252525" Padding="0"  HeightRequest="40">
+                                                            <Label Padding="15,0" VerticalOptions="CenterAndExpand" Text="{Binding .}"/>
+                                                            <BoxView HeightRequest="1" BackgroundColor="LightGray"/>
+                                                        </StackLayout>
+
+                                                    </DataTemplate>
+                                                </CollectionView.ItemTemplate>
+                                            </CollectionView>
+                                        </StackLayout>
+
+                                    </Frame>
+                                </Tc:Expander.Content>
+                            </Tc:Expander>
+
                             <Tc:Expander>
                                 <Tc:Expander.Header>
                                     <Frame BackgroundColor="#3D3B40" 
@@ -413,23 +423,27 @@ CornerRadius="0"
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="45"/>
                     </Grid.RowDefinitions>
-                    <Image Source="memekanseri.jpg" Margin="5" BackgroundColor="Transparent" Grid.ColumnSpan="2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Aspect="AspectFit"/>
+                    <Image  Margin="5" BackgroundColor="Transparent" Grid.ColumnSpan="2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Aspect="AspectFit"/>
 
-                    <Tc:MediaElement BackgroundColor="Transparent"  ShouldShowPlaybackControls="False" x:Name="MediaElement1"  Grid.ColumnSpan="2">
+                    <Tc:MediaElement 
+                        Loaded="MediaElement1_Loaded"
+                        PositionChanged="MediaElement1_PositionChanged"
+                        BackgroundColor="Transparent"  ShouldShowPlaybackControls="False" x:Name="MediaElement1"  Grid.ColumnSpan="2">
 
                     </Tc:MediaElement>
                     <AbsoluteLayout x:Name="GoniometerAbsoluteLayout" Grid.ColumnSpan="2" BackgroundColor="Transparent"/>
-                   <Tc:DrawingView ZIndex="3" LineColor="Red" IsEnabled="False"  x:Name="DrawingViewVisualizer" BackgroundColor="Transparent" Grid.ColumnSpan="2"/>
+                    <Tc:DrawingView ZIndex="3" LineWidth="10" Loaded="myDrawingView_Loaded" LineColor="Red" IsEnabled="False"  x:Name="myDrawingView" BackgroundColor="Transparent" Grid.ColumnSpan="2"/>
                     <StackLayout Spacing="15" Orientation="Horizontal" Padding="15,0"  Grid.Row="1" Grid.ColumnSpan="2">
                         <Label VerticalOptions="Center" Text="&#xf04a;" FontFamily="FSO"/>
                         <Label VerticalOptions="Center" Text="&#xf0c8;" FontFamily="FSO">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer/>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizerPlayPouse_Tapped"/>
                             </Label.GestureRecognizers>
                         </Label>
                         <Label VerticalOptions="Center"  Text="&#xf04e;" FontFamily="FSO"/>
                         <Slider
-                           x:Name="SliderVideo"                         
+                            ValueChanged="mySliderVideo_ValueChanged"
+                           x:Name="mySliderVideo"                         
                            VerticalOptions="Center"
                            HorizontalOptions="FillAndExpand"                    
                            MinimumTrackColor="Red" 
