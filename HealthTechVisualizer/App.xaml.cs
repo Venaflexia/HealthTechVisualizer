@@ -1,4 +1,6 @@
-﻿namespace HealthTechVisualizer
+﻿
+
+namespace HealthTechVisualizer
 {
     public partial class App : Application
     {
@@ -8,5 +10,7 @@
 
             MainPage = new AppShell();
         }
+   
     }
+    
 }

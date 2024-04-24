@@ -1,4 +1,5 @@
 using CommunityToolkit.Maui.Core.Primitives;
+using Microsoft.Maui.Controls.Shapes;
 using static Microsoft.Maui.ApplicationModel.Permissions;
 
 namespace HealthTechVisualizer.Mvvm.Views;
@@ -11,9 +12,10 @@ public partial class VisualizerPage : ContentPage
     int tiklamaSayisi;
     double x1, x2, x3;
     double y1, y2, y3;
-    BoxView boxView1 = new BoxView() { Color = Colors.Red, HeightRequest = 10, WidthRequest = 10, CornerRadius = 5 };
-    BoxView boxView2 = new BoxView() { Color = Colors.DodgerBlue, HeightRequest = 10, WidthRequest = 10, CornerRadius = 5 };
-    BoxView boxView3 = new BoxView() { Color = Colors.Red, HeightRequest = 10, WidthRequest = 10, CornerRadius = 5 };
+    BoxView boxView1 = new BoxView() { Color = Colors.Yellow, HeightRequest = 10, WidthRequest = 10, CornerRadius = 5 };
+    BoxView boxView2 = new BoxView() { Color = Colors.Orange, HeightRequest = 10, WidthRequest = 10, CornerRadius = 5 };
+    BoxView boxView3 = new BoxView() { Color = Colors.Yellow, HeightRequest = 10, WidthRequest = 10, CornerRadius = 5 };
+    Polyline line = new Polyline() {Stroke=Colors.Gray,StrokeThickness=2 };
     public VisualizerPage()
 	{
 		InitializeComponent();
@@ -33,12 +35,18 @@ public partial class VisualizerPage : ContentPage
         //Çizim Modu
         List<Microsoft.Maui.Graphics.Color> mylistColors = new List<Microsoft.Maui.Graphics.Color>();
         mylistColors.Add(Colors.Red);
-        mylistColors.Add(Colors.Green);
-        mylistColors.Add(Colors.Yellow);      
-        mylistColors.Add(Colors.Black);
         mylistColors.Add(Colors.White);
+        mylistColors.Add(Colors.Black);
+        mylistColors.Add(Colors.Blue);
+        mylistColors.Add(Colors.Purple);
+        mylistColors.Add(Colors.Orange);
+        mylistColors.Add(Colors.Gray);
+        mylistColors.Add(Colors.Pink);
+        mylistColors.Add(Colors.Yellow);      
         ColorPicker.ItemsSource = mylistColors;
-
+        GoniometerLineColorPicker.ItemsSource= mylistColors;
+        CentreGoniometerPointColorPicker.ItemsSource = mylistColors;
+        SideGoniometerPointColorPicker.ItemsSource=mylistColors;
         //Açý Ölçer
         tiklamaSayisi = 0;
 
@@ -48,6 +56,8 @@ public partial class VisualizerPage : ContentPage
         //line.IsVisible = false;
         GoniometerAbsoluteLayout.IsVisible = false;
         DrawingThicknessSlider.Value = 10;
+        GoniometerLineThickness.Value = 2;
+        GoniometerPointSize.Value = 10;
     }
 
     private void MediaElement1_Loaded(object sender, EventArgs e)
@@ -138,11 +148,23 @@ public partial class VisualizerPage : ContentPage
         if (MediaElement1.CurrentState == MediaElementState.Paused || MediaElement1.CurrentState == MediaElementState.Stopped)
         {
             MediaElement1.Play();
+            LblVideoStartStop.Text = "\uf04d";
         }
         else
         {
             MediaElement1.Pause();
+            LblVideoStartStop.Text = "\uf04b";
         }
+    }
+    double secondvalue = 50000;
+    private void TapGestureRecognizer_Tapped_Forward(object sender, TappedEventArgs e)
+    {
+        mySliderVideo.Value = mySliderVideo.Value + secondvalue;
+    }
+
+    private void TapGestureRecognizer_Tapped_Back(object sender, TappedEventArgs e)
+    {
+        mySliderVideo.Value = mySliderVideo.Value - secondvalue;
     }
 
     //Alt kýsým çizim ile ilgili
@@ -193,6 +215,13 @@ public partial class VisualizerPage : ContentPage
         }
 
     }
+
+
+
+
+
+    //Alt kýsým açý ölçer le ilgili
+
     private void Picker_SelectedIndexChangedLineColor(object sender, EventArgs e)
     {
         Picker picker = (Picker)sender;
@@ -208,8 +237,197 @@ public partial class VisualizerPage : ContentPage
 
     }
 
-    //Alt kýsým açý ölçer le ilgili
+    private void GoniometerPointSize_ValueChanged(object sender, ValueChangedEventArgs e)
+    {
+        boxView1.WidthRequest = (int)e.NewValue;
+        boxView1.HeightRequest = (int)e.NewValue;
+        boxView1.CornerRadius = (int)e.NewValue / 2;
+        boxView2.WidthRequest = (int)e.NewValue;
+        boxView2.HeightRequest = (int)e.NewValue;
+        boxView2.CornerRadius = (int)e.NewValue / 2;
+        boxView3.WidthRequest = (int)e.NewValue;
+        boxView3.HeightRequest = (int)e.NewValue;
+        boxView3.CornerRadius = (int)e.NewValue / 2;
+
+    }
+
+    private void CentreGoniometerPointColorPicker_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        Picker picker = (Picker)sender;
+
+        if (drawingMod)
+        {
+            if (picker.SelectedItem != null)
+            {
+                boxView2.Color = picker.SelectedItem as Microsoft.Maui.Graphics.Color;
+            }
+        }
+    }
+
+    private void SideGoniometerPointColorPicker_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        Picker picker = (Picker)sender;
+
+        if (drawingMod)
+        {
+            if (picker.SelectedItem != null)
+            {
+                boxView1.Color = picker.SelectedItem as Microsoft.Maui.Graphics.Color;
+                boxView3.Color = picker.SelectedItem as Microsoft.Maui.Graphics.Color;
+            }
+        }
+    }
+
+    private void GoniometerLineColorPicker_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        Picker picker = (Picker)sender;
+
+        if (drawingMod)
+        {
+            if (picker.SelectedItem != null)
+            {
+                line.Stroke = picker.SelectedItem as Microsoft.Maui.Graphics.Color;
+            }
+        }
+    }
+
+    private void TapGestureRecognizer_Tapped_Mute(object sender, TappedEventArgs e)
+    {
+        if (MediaElement1.ShouldMute)
+        {
+            MediaElement1.ShouldMute = false;
+            LblMute.Text = "\uf028";
+        }
+        else
+        {
+            MediaElement1.ShouldMute=true;
+            LblMute.Text = "\uf6a9";
+        }
+    }
+
+    private void MenuFlyoutItem_ClickedSelectSecondBack(object sender, EventArgs e)
+    {
+        MenuFlyoutItem result = sender as MenuFlyoutItem;
+        double newsecondvalue = Convert.ToDouble(result.Text);
+        secondvalue = newsecondvalue * 1000000;
+    }
+
+    private void GoniometerLineThickness_ValueChanged(object sender, ValueChangedEventArgs e)
+    {
+        line.StrokeThickness = (int)e.NewValue;
+    }
+    private void RadioButton_CheckedChangedAciOlcer1(object sender, CheckedChangedEventArgs e)
+    {
+        if (GoniometerRadioButton.IsChecked)
+        {
+
+            //boxView1.IsVisible = true;
+            //boxView2.IsVisible = true;
+            //boxView3.IsVisible = true;
+            //line.IsVisible= true;
+            if (!GoniometerAbsoluteLayout.Contains(boxView1))
+            {
+                GoniometerAbsoluteLayout.Children.Add(boxView1);
+                GoniometerAbsoluteLayout.Children.Add(boxView2);
+                GoniometerAbsoluteLayout.Children.Add(boxView3);
+                GoniometerAbsoluteLayout.Children.Add(line);
+            }
 
 
+            GoniometerAbsoluteLayout.IsVisible = true;
+            DrawingSwitch.IsToggled = false;
+
+        }
+    }
+    private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+    {
+        if (!myDrawingView.IsEnabled)
+        {
+            if (GoniometerRadioButton.IsChecked)
+            {
+                if (!GoniometerAbsoluteLayout.Children.Contains(boxView1))
+                {
+                    GoniometerAbsoluteLayout.Children.Add(boxView1);
+                    GoniometerAbsoluteLayout.Children.Add(boxView2);
+                    GoniometerAbsoluteLayout.Children.Add(boxView3);
+                    GoniometerAbsoluteLayout.Children.Add(line);
+
+                }
+                tiklamaSayisi++; Microsoft.Maui.Graphics.Point? relativeToContainerPosition = e.GetPosition((View)sender);
+                double x = relativeToContainerPosition.Value.X;
+                double y = relativeToContainerPosition.Value.Y;
+                // AbsoluteLayout result = sender as AbsoluteLayout;
+
+                switch (tiklamaSayisi)
+                {
+                    case 1:
+                        x1 = x;
+                        y1 = y;
+                        GoniometerAbsoluteLayout.SetLayoutBounds(boxView1, new Rect(x - 50, y - 50, 100, 100));
+
+                        break;
+                    case 2:
+                        x2 = x;
+                        y2 = y;
+                        GoniometerAbsoluteLayout.SetLayoutBounds(boxView2, new Rect(x - 50, y - 50, 100, 100));
+
+                        break;
+                    case 3:
+                        x3 = x;
+                        y3 = y;
+                        GoniometerAbsoluteLayout.SetLayoutBounds(boxView3, new Rect(x - 50, y - 50, 100, 100));
+
+                        tiklamaSayisi = 0;
+
+                        line.Points = new Microsoft.Maui.Controls.PointCollection
+                {
+                    new Microsoft.Maui.Graphics.Point(x1, y1),
+                    new Microsoft.Maui.Graphics.Point(x2, y2),
+                    new Microsoft.Maui.Graphics.Point(x3, y3)
+                };
+                        //line.Stroke = SolidColorBrush.Green;
+                        //line.StrokeThickness = 2;
+                        double angle = Math.Atan2(y3 - y2, x3 - x2) - Math.Atan2(y1 - y2, x1 - x2);
+                        if (angle > 0)
+                        {
+                            angle = angle * (180 / Math.PI);
+                            LabelAciOlcer1.Text = string.Format("{0:F2}", angle);
+                            LabelAciOlcer2.Text = string.Format("{0:F2}", (360 - angle));
+                        }
+                        else
+                        {
+                            //angle = angle * (-1);
+                            angle = angle * (180 / Math.PI);
+                            LabelAciOlcer1.Text = string.Format("{0:F2}", angle);
+                            LabelAciOlcer2.Text = string.Format("{0:F2}", (360 + angle));
+                        }
+                        //angle = angle * (180 / Math.PI);
+                        //LabelAciOlcer1.Text = string.Format("{0:F2}", angle);
+                        //LabelAciOlcer2.Text = string.Format("{0:F2}", (360 - angle));
+                        break;
+                }
+
+
+            }
+        }
+    }
+
+    private void TapGestureRecognizer_Tapped_AciSil(object sender, TappedEventArgs e)
+    {
+
+        GoniometerAbsoluteLayout.SetLayoutBounds(boxView1, new Rect(0, 0, 50, 50));
+        GoniometerAbsoluteLayout.SetLayoutBounds(boxView2, new Rect(0, 0, 50, 50));
+        GoniometerAbsoluteLayout.SetLayoutBounds(boxView3, new Rect(0, 0, 50, 50));
+        line.Points = new Microsoft.Maui.Controls.PointCollection
+                {
+                    new Microsoft.Maui.Graphics.Point(0, 0),
+                    new Microsoft.Maui.Graphics.Point(0, 0),
+                    new Microsoft.Maui.Graphics.Point(0, 0) };
+        GoniometerAbsoluteLayout.Remove(boxView1);
+        GoniometerAbsoluteLayout.Remove(boxView2);
+        GoniometerAbsoluteLayout.Remove(boxView3);
+        GoniometerAbsoluteLayout.Remove(line);
+
+    }
 
 }

@@ -110,32 +110,37 @@
                                 <StackLayout Padding="15,15,15,0" Spacing="10">
 
                                     <StackLayout Orientation="Horizontal">
-                                        <RadioButton x:Name="GoniometerRadioButton" GroupName="goniometer"  VerticalOptions="Center" Content="Goniometer"/>
-                                        <Label x:Name="LabelAciOlcer1" FontAttributes="Bold" FontSize="18" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Text="?"/>
-                                        <Label FontSize="20" VerticalOptions="Center" TextColor="White" Text="&#xf1f8;" FontFamily="FSO">
+                                        <RadioButton x:Name="GoniometerRadioButton" CheckedChanged="RadioButton_CheckedChangedAciOlcer1" GroupName="goniometer"  VerticalOptions="Center" Content="Goniometer"/>
+                                        <Label HorizontalOptions="EndAndExpand" FontSize="20" VerticalOptions="Center" TextColor="White" Text="&#xf1f8;" FontFamily="FSO">
                                             <Label.GestureRecognizers>
-                                                <TapGestureRecognizer/>
+                                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_AciSil"/>
                                             </Label.GestureRecognizers>
                                         </Label>
 
                                     </StackLayout>
-                                    <Picker Title="Line Color" TitleColor="White"/>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label x:Name="LabelAciOlcer1"  FontAttributes="Bold" FontSize="18" VerticalOptions="Center" Text="?"/>
+                                                <Label Text="|" HorizontalOptions="CenterAndExpand"/>
+                                                <Label x:Name="LabelAciOlcer2"  FontAttributes="Bold" FontSize="18" VerticalOptions="Center" Text="?"/>
+
+                                            </StackLayout>
+                                            <Picker Title="Line Color" SelectedIndexChanged="GoniometerLineColorPicker_SelectedIndexChanged" x:Name="GoniometerLineColorPicker" TitleColor="White"/>
                                     <StackLayout>
                                         <Label Text="Line Thickness" 
                                                HorizontalTextAlignment="Start"/>
-                                        <StackLayout Orientation="Horizontal">
-                                            <Slider Value="5" Minimum="0" VerticalOptions="Center" Maximum="20" HorizontalOptions="FillAndExpand"/>
-                                            <Label Text="5" VerticalOptions="Center"/>
+                                        <StackLayout Spacing="10" Orientation="Horizontal">
+                                            <Slider Value="5" Minimum="1" Maximum="20" ValueChanged="GoniometerLineThickness_ValueChanged" x:Name="GoniometerLineThickness" VerticalOptions="Center"  HorizontalOptions="FillAndExpand"/>
+                                            <Label FontSize="20" Text="{Binding Source={x:Reference GoniometerLineThickness},Path=Value,StringFormat='{0:F0}'}"  VerticalOptions="Center"/>
                                         </StackLayout>
 
                                     </StackLayout>
-                                    <Picker Title="Centre Point Color" TitleColor="White"/>
-                                    <Picker Title="Side Point Color" TitleColor="White"/>
+                                    <Picker Title="Centre Point Color" SelectedIndexChanged="CentreGoniometerPointColorPicker_SelectedIndexChanged" x:Name="CentreGoniometerPointColorPicker" TitleColor="White"/>
+                                            <Picker Title="Side Point Color" SelectedIndexChanged="SideGoniometerPointColorPicker_SelectedIndexChanged" x:Name="SideGoniometerPointColorPicker" TitleColor="White"/>
                                     <StackLayout>
                                         <Label Text="Point Size" HorizontalTextAlignment="Start"/>
-                                        <StackLayout Orientation="Horizontal">
-                                            <Slider Value="5" Minimum="0" VerticalOptions="Center" Maximum="20" HorizontalOptions="FillAndExpand"/>
-                                            <Label Text="5" VerticalOptions="Center"/>
+                                        <StackLayout Spacing="10" Orientation="Horizontal">
+                                                    <Slider Value="10" ValueChanged="GoniometerPointSize_ValueChanged" Minimum="1" x:Name="GoniometerPointSize" VerticalOptions="Center" Maximum="50" HorizontalOptions="FillAndExpand"/>
+                                            <Label FontSize="20" Text="{Binding Source={x:Reference GoniometerPointSize},Path=Value,StringFormat='{0:F0}'}" VerticalOptions="Center"/>
                                         </StackLayout>
 
                                     </StackLayout>
@@ -413,7 +418,9 @@ CornerRadius="0"
             </ScrollView>
 
             <AbsoluteLayout BackgroundColor="Black" Padding="0" Grid.Column="1">
-
+                <AbsoluteLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </AbsoluteLayout.GestureRecognizers>
                 <Grid Padding="0" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -434,13 +441,47 @@ CornerRadius="0"
                     <AbsoluteLayout x:Name="GoniometerAbsoluteLayout" Grid.ColumnSpan="2" BackgroundColor="Transparent"/>
                     <Tc:DrawingView ZIndex="3" LineWidth="10" Loaded="myDrawingView_Loaded" LineColor="Red" IsEnabled="False"  x:Name="myDrawingView" BackgroundColor="Transparent" Grid.ColumnSpan="2"/>
                     <StackLayout Spacing="15" Orientation="Horizontal" Padding="15,0"  Grid.Row="1" Grid.ColumnSpan="2">
-                        <Label VerticalOptions="Center" Text="&#xf04a;" FontFamily="FSO"/>
-                        <Label VerticalOptions="Center" Text="&#xf0c8;" FontFamily="FSO">
+                        <Label VerticalOptions="Center" Text="&#xf04a;" FontFamily="FSO">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_Back"></TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                            <FlyoutBase.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="0,01" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="0,02" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="0,05" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="0,1" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="0,2" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="0,5" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="1" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="2" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="5" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                </MenuFlyout>
+                            </FlyoutBase.ContextFlyout>
+                        </Label>
+                        <Label VerticalOptions="Center" Text="&#xf04b;" x:Name="LblVideoStartStop" FontFamily="FSO">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizerPlayPouse_Tapped"/>
                             </Label.GestureRecognizers>
                         </Label>
-                        <Label VerticalOptions="Center"  Text="&#xf04e;" FontFamily="FSO"/>
+                        <Label VerticalOptions="Center"  Text="&#xf04e;" FontFamily="FSO">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_Forward"/>
+                            </Label.GestureRecognizers>
+                            <FlyoutBase.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="0,01" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="0,02" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="0,05" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="0,1" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="0,2" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="0,5" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="1" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="2" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="5" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                </MenuFlyout>
+                            </FlyoutBase.ContextFlyout>
+                        </Label>
                         <Slider
                             ValueChanged="mySliderVideo_ValueChanged"
                            x:Name="mySliderVideo"                         
@@ -448,7 +489,11 @@ CornerRadius="0"
                            HorizontalOptions="FillAndExpand"                    
                            MinimumTrackColor="Red" 
                            MaximumTrackColor="Gray"/>
-                        <Label VerticalOptions="Center" Text="&#xf027;" FontFamily="FSO"/>
+                        <Label x:Name="LblMute" VerticalOptions="Center" Text="&#xf027;" FontFamily="FSO">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_Mute"/>
+                            </Label.GestureRecognizers>
+                        </Label>
                     </StackLayout>
                 </Grid>
             </AbsoluteLayout>
