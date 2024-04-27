@@ -31,6 +31,7 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="buyut.png" Clicked="ToolbarItem_ClickedAspect"/>
+        <ToolbarItem IconImageSource="cerceve.png" Clicked="ToolbarItem_ClickedGrid"/>
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
@@ -88,18 +89,18 @@
                             </Frame>
                         </Tc:Expander.Header>
                         <Tc:Expander.Content>
-                                    <Frame BackgroundColor="Black" >
+                                    <Frame BackgroundColor="Black" BorderColor="Black" CornerRadius="0">
                                 <StackLayout>
                                     <StackLayout Orientation="Horizontal">
-                                        <RadioButton IsEnabled="False" GroupName="goniometer" VerticalOptions="Center" TextColor="White" Content="Triangle"/>
+                                        <RadioButton IsEnabled="False" GroupName="goniometer" VerticalOptions="Center" TextColor="Gray" Content="Triangle"/>
                                         <!--<Label FontSize="20" VerticalOptions="Center" TextColor="White" HorizontalOptions="EndAndExpand" Text="&#xf1f8;" FontFamily="FSO"/>-->
                                     </StackLayout>
                                     <StackLayout Orientation="Horizontal">
-                                                <RadioButton IsEnabled="False"  GroupName="goniometer"  TextColor="White"  VerticalOptions="Center" Content="Circle"/>
+                                                <RadioButton IsEnabled="False" GroupName="goniometer"  TextColor="Gray"  VerticalOptions="Center" Content="Circle"/>
                                         <!--<Label FontSize="20" VerticalOptions="Center" TextColor="White" HorizontalOptions="EndAndExpand" Text="&#xf1f8;" FontFamily="FSO"/>-->
                                     </StackLayout>
                                     <StackLayout Orientation="Horizontal">
-                                                <RadioButton IsEnabled="False"  GroupName="goniometer"  VerticalOptions="Center" Content="Square"/>
+                                                <RadioButton IsEnabled="False" TextColor="Gray" GroupName="goniometer"  VerticalOptions="Center" Content="Square"/>
                                         <!--<Label FontSize="20" VerticalOptions="Center" TextColor="White" HorizontalOptions="EndAndExpand" Text="&#xf1f8;" FontFamily="FSO"/>-->
                                     </StackLayout>
 
@@ -124,7 +125,7 @@
                                 <StackLayout Padding="15,15,15,0" Spacing="10">
 
                                     <StackLayout Orientation="Horizontal">
-                                        <RadioButton x:Name="GoniometerRadioButton" CheckedChanged="RadioButton_CheckedChangedAciOlcer1" GroupName="goniometer"  VerticalOptions="Center" Content="Goniometer"/>
+                                        <RadioButton TextColor="White" x:Name="GoniometerRadioButton" CheckedChanged="RadioButton_CheckedChangedAciOlcer1" GroupName="goniometer"  VerticalOptions="Center" Content="Goniometer"/>
                                         <!--<Label HorizontalOptions="EndAndExpand" FontSize="20" VerticalOptions="Center" TextColor="White" Text="&#xf1f8;" FontFamily="FSO">
                                             <Label.GestureRecognizers>
                                                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_AciSil"/>
@@ -138,28 +139,36 @@
 
                                             </StackLayout>
                                             <StackLayout Orientation="Horizontal">
-                                                <Label x:Name="LabelAciOlcer1"  FontAttributes="Bold" FontSize="18" VerticalOptions="Center" Text="?"/>
-                                                <Label Text="|" HorizontalOptions="CenterAndExpand"/>
-                                                <Label x:Name="LabelAciOlcer2"  FontAttributes="Bold" FontSize="18" VerticalOptions="Center" Text="?"/>
+                                                <Label x:Name="LabelAciOlcer1" TextColor="White" FontAttributes="Bold" FontSize="18" VerticalOptions="Center" Text="?"/>
+                                                <Label TextColor="White" Text="|" HorizontalOptions="CenterAndExpand"/>
+                                                <Label TextColor="White" x:Name="LabelAciOlcer2"  FontAttributes="Bold" FontSize="18" VerticalOptions="Center" Text="?"/>
 
                                             </StackLayout>
-                                            <Picker Title="Line Color" SelectedIndexChanged="GoniometerLineColorPicker_SelectedIndexChanged" x:Name="GoniometerLineColorPicker" TitleColor="White"/>
+                                            <Picker TextColor="White" Title="Line Color" SelectedIndexChanged="GoniometerLineColorPicker_SelectedIndexChanged" x:Name="GoniometerLineColorPicker" TitleColor="White"/>
                                     <StackLayout>
-                                        <Label Text="Line Thickness" 
+                                        <Label 
+                                            TextColor="White"
+                                            Text="Line Thickness" 
                                                HorizontalTextAlignment="Start"/>
                                         <StackLayout Spacing="10" Orientation="Horizontal">
-                                            <Slider Value="5" Minimum="1" Maximum="20" ValueChanged="GoniometerLineThickness_ValueChanged" x:Name="GoniometerLineThickness" VerticalOptions="Center"  HorizontalOptions="FillAndExpand"/>
-                                            <Label FontSize="20" Text="{Binding Source={x:Reference GoniometerLineThickness},Path=Value,StringFormat='{0:F0}'}"  VerticalOptions="Center"/>
+                                                    <Slider  MinimumTrackColor="WhiteSmoke"
+ MaximumTrackColor="DimGray" Value="5" Minimum="1" Maximum="20" ValueChanged="GoniometerLineThickness_ValueChanged" x:Name="GoniometerLineThickness" VerticalOptions="Center"  HorizontalOptions="FillAndExpand"/>
+                                            <Label TextColor="White" FontSize="20" Text="{Binding Source={x:Reference GoniometerLineThickness},Path=Value,StringFormat='{0:F0}'}"  VerticalOptions="Center"/>
                                         </StackLayout>
 
                                     </StackLayout>
-                                    <Picker Title="Centre Point Color" SelectedIndexChanged="CentreGoniometerPointColorPicker_SelectedIndexChanged" x:Name="CentreGoniometerPointColorPicker" TitleColor="White"/>
-                                            <Picker Title="Side Point Color" SelectedIndexChanged="SideGoniometerPointColorPicker_SelectedIndexChanged" x:Name="SideGoniometerPointColorPicker" TitleColor="White"/>
+                                    <Picker Title="Centre Point Color" TextColor="White" SelectedIndexChanged="CentreGoniometerPointColorPicker_SelectedIndexChanged" x:Name="CentreGoniometerPointColorPicker" TitleColor="White"/>
+                                            <Picker 
+                                                TextColor="White"
+                                                Title="Side Point Color" SelectedIndexChanged="SideGoniometerPointColorPicker_SelectedIndexChanged" x:Name="SideGoniometerPointColorPicker" TitleColor="White"/>
                                     <StackLayout>
                                         <Label Text="Point Size" HorizontalTextAlignment="Start"/>
                                         <StackLayout Spacing="10" Orientation="Horizontal">
-                                                    <Slider Value="10" ValueChanged="GoniometerPointSize_ValueChanged" Minimum="1" x:Name="GoniometerPointSize" VerticalOptions="Center" Maximum="50" HorizontalOptions="FillAndExpand"/>
-                                            <Label FontSize="20" Text="{Binding Source={x:Reference GoniometerPointSize},Path=Value,StringFormat='{0:F0}'}" VerticalOptions="Center"/>
+                                                    <Slider 
+                                                         MinimumTrackColor="WhiteSmoke"
+ MaximumTrackColor="DimGray"
+                                                        Value="10" ValueChanged="GoniometerPointSize_ValueChanged" Minimum="1" x:Name="GoniometerPointSize" VerticalOptions="Center" Maximum="50" HorizontalOptions="FillAndExpand"/>
+                                            <Label TextColor="White" FontSize="20" Text="{Binding Source={x:Reference GoniometerPointSize},Path=Value,StringFormat='{0:F0}'}" VerticalOptions="Center"/>
                                         </StackLayout>
 
                                     </StackLayout>
@@ -183,16 +192,22 @@
 
                                   <StackLayout  Padding="0,15,0,0"  Spacing="15" >
                                     <StackLayout Orientation="Horizontal">
-                                        <Label Margin="15,0,0,0" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Text="Drawing Mode"/>
-                                        <Switch x:Name="DrawingSwitch" Toggled="Switch_ToggledDrawingEnable" Margin="0" IsToggled="False" VerticalOptions="Center" />
+                                        <Label 
+                                            TextColor="White"
+                                            Margin="15,0,0,0" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Text="Drawing Mode"/>
+                                        <Switch
+                                           
+                                            x:Name="DrawingSwitch" Toggled="Switch_ToggledDrawingEnable" Margin="0" IsToggled="False" VerticalOptions="Center" />
                                     </StackLayout>
                                            
                                    <StackLayout Padding="15,0">
-                                        <Picker  x:Name="ColorPicker" SelectedIndexChanged="Picker_SelectedIndexChangedLineColor" BackgroundColor="Black" Title="Color Picker" TitleColor="White">
+                                        <Picker  
+                                            TextColor="White"
+                                            x:Name="ColorPicker" SelectedIndexChanged="Picker_SelectedIndexChangedLineColor" BackgroundColor="Black" Title="Color Picker" TitleColor="White">
                                         </Picker>
                                     </StackLayout>
                                     <StackLayout >
-                                        <Label  Padding="15,0" Text="Thickness"/>
+                                        <Label TextColor="White" Padding="15,0" Text="Thickness"/>
                                         <StackLayout  Padding="15"  Spacing="10" Orientation="Horizontal">
                                             <Slider                                              
                                                VerticalOptions="Center"
@@ -201,10 +216,14 @@
                                                Minimum="1" Value="10" Maximum="100" HorizontalOptions="FillAndExpand"
                                                    MinimumTrackColor="WhiteSmoke"
                                                    MaximumTrackColor="DimGray"/>
-                                            <Label FontSize="20" FontAttributes="Bold" VerticalOptions="Center" Text="{Binding Source={x:Reference DrawingThicknessSlider},Path=Value,StringFormat='{0:f0}'}"/>
+                                            <Label 
+                                                TextColor="White"
+                                                FontSize="20" FontAttributes="Bold" VerticalOptions="Center" Text="{Binding Source={x:Reference DrawingThicknessSlider},Path=Value,StringFormat='{0:f0}'}"/>
                                         </StackLayout>
                                         <StackLayout  Padding="15,0" Orientation="Horizontal">
-                                            <Label Text="Multi Line" VerticalOptions="Center" HorizontalOptions="StartAndExpand"/>
+                                            <Label 
+                                                TextColor="White"
+                                                Text="Multi Line" VerticalOptions="Center" HorizontalOptions="StartAndExpand"/>
                                                     <Switch Toggled="Switch_ToggledMultiLine" VerticalOptions="Center"/>
                                         </StackLayout>
                                     </StackLayout>
@@ -227,7 +246,7 @@
                                 <StackLayout Spacing="15" Padding="15">
                                     <Image  x:Name="RecordingImage" HeightRequest="150"  BackgroundColor="Gray"/>
                                             <Button IsEnabled="False"  Text="Save" CornerRadius="5" HeightRequest="30" FontAttributes="Bold" BackgroundColor="#696C71" TextColor="White"/>
-                                            <Button IsEnabled="False"  Text="Delete" CornerRadius="5" BackgroundColor="#31363F" FontAttributes="Bold" TextColor="White"/>
+                                            <Button IsEnabled="False" Text="Delete" CornerRadius="5" BackgroundColor="#31363F" FontAttributes="Bold" TextColor="White"/>
                                 </StackLayout>
                             </Frame>
                         </Tc:Expander.Content>
@@ -244,21 +263,21 @@
             Padding="0" 
             HeightRequest="50"
             CornerRadius="0"
-            >
+          BorderColor="#3D3B40"  >
                                         <StackLayout Padding="15,0" Orientation="Horizontal">
-                                            <Label VerticalOptions="Center" FontAttributes="Bold" Text="My-Rapor"/>
+                                            <Label TextColor="Gray" VerticalOptions="Center" FontAttributes="Bold" Text="My-Rapor"/>
                                         </StackLayout>
                                     </Frame>
                                 </Tc:Expander.Header>
                                 <Tc:Expander.Content>
-                                    <Frame BackgroundColor="#252525"  Padding="0" CornerRadius="0">
+                                    <Frame  BorderColor="#3D3B40" BackgroundColor="#252525"  Padding="0" CornerRadius="0">
                                         <StackLayout HeightRequest="600" Spacing="15">
-                                            <Editor BackgroundColor="White" TextColor="Black" PlaceholderColor="Black" VerticalOptions="FillAndExpand" Placeholder="Write a rapor"/>
-                                            <Button Text="import" CornerRadius="5" HeightRequest="30" FontAttributes="Bold" BackgroundColor="#696C71" TextColor="White"/>
-                                            <Button Text="Export" CornerRadius="5" BackgroundColor="#31363F" FontAttributes="Bold" TextColor="White"/>
+                                            <Editor IsEnabled="False" BackgroundColor="White" TextColor="Black" PlaceholderColor="Black" VerticalOptions="FillAndExpand" Placeholder="Write a rapor"/>
+                                            <Button IsEnabled="False" Text="import" CornerRadius="5" HeightRequest="30" FontAttributes="Bold" BackgroundColor="#696C71" TextColor="White"/>
+                                            <Button IsEnabled="False" Text="Export" CornerRadius="5" BackgroundColor="#31363F" FontAttributes="Bold" TextColor="White"/>
                                             <StackLayout Padding="15,0,0,0" Orientation="Horizontal">
-                                                <Label HorizontalOptions="StartAndExpand" Text="Contrast" VerticalOptions="Center"/>
-                                                <Switch VerticalOptions="Center"/>
+                                                <Label TextColor="Gray" HorizontalOptions="StartAndExpand" Text="Contrast" VerticalOptions="Center"/>
+                                                <Switch IsEnabled="False" VerticalOptions="Center"/>
                                             </StackLayout>
                                         </StackLayout>
                                      
@@ -271,21 +290,22 @@
 Padding="0" 
 HeightRequest="50"
 CornerRadius="0"
+                                           BorderColor="#3D3B40"
 >
                                         <StackLayout Padding="15,0" Orientation="Horizontal">
-                                            <Label VerticalOptions="Center" FontAttributes="Bold" Text="AI-Rapor"/>
+                                            <Label TextColor="Gray" VerticalOptions="Center" FontAttributes="Bold" Text="AI-Rapor"/>
                                         </StackLayout>
                                     </Frame>
                                 </Tc:Expander.Header>
                                 <Tc:Expander.Content>
-                                    <Frame BackgroundColor="#252525"  Padding="0" CornerRadius="0">
+                                    <Frame  BorderColor="#3D3B40" BackgroundColor="#252525"  Padding="0" CornerRadius="0">
                                         <StackLayout HeightRequest="600" Spacing="15">
-                                            <Editor BackgroundColor="White" TextColor="Black" PlaceholderColor="Black" VerticalOptions="FillAndExpand" Placeholder="Get Ai-Rapor"/>
-                                            <Button Text="Get Rapor" CornerRadius="5" HeightRequest="30" FontAttributes="Bold" BackgroundColor="#696C71" TextColor="White"/>
-                                            <Button Text="Export" CornerRadius="5" BackgroundColor="#31363F" FontAttributes="Bold" TextColor="White"/>
+                                            <Editor IsEnabled="False" BackgroundColor="White" TextColor="Black" PlaceholderColor="Black" VerticalOptions="FillAndExpand" Placeholder="Get Ai-Rapor"/>
+                                            <Button IsEnabled="False" Text="Get Rapor" CornerRadius="5" HeightRequest="30" FontAttributes="Bold" BackgroundColor="#696C71" TextColor="White"/>
+                                            <Button IsEnabled="False" Text="Export" CornerRadius="5" BackgroundColor="#31363F" FontAttributes="Bold" TextColor="White"/>
                                             <StackLayout Padding="15,0,0,0" Orientation="Horizontal">
-                                                <Label HorizontalOptions="StartAndExpand" Text="Contrast" VerticalOptions="Center"/>
-                                                <Switch VerticalOptions="Center"/>
+                                                <Label TextColor="Gray" HorizontalOptions="StartAndExpand" Text="Contrast" VerticalOptions="Center"/>
+                                                <Switch IsEnabled="False" VerticalOptions="Center"/>
                                             </StackLayout>
                                         </StackLayout>
 
@@ -304,24 +324,25 @@ CornerRadius="0"
              Padding="0" 
              HeightRequest="50"
              CornerRadius="0"
-             >
+            BorderColor="#3D3B40" >
                                         <StackLayout Padding="15,0" Orientation="Horizontal">
-                                            <Label VerticalOptions="Center" FontAttributes="Bold" Text="Recent"/>
+                                            <Label VerticalOptions="Center" TextColor="Gray" FontAttributes="Bold" Text="Recent"/>
                                         </StackLayout>
                                     </Frame>
                                 </Tc:Expander.Header>
-                                <Tc:Expander.Content>
-                                    <Frame  Padding="0" CornerRadius="0">
-                                        <StackLayout Spacing="15">
-                                            <Entry Placeholder="Video-Link" TextColor="DodgerBlue" />
-                                            <CollectionView SelectionMode="Single">
+                                <Tc:Expander.Content  >
+                                    <Frame BackgroundColor="#3D3B40" Padding="0" BorderColor="#3D3B40" CornerRadius="0">
+                                        <StackLayout Spacing="0">
+                                            <Entry BackgroundColor="Black" IsEnabled="False" Placeholder="Video-Link" TextColor="DodgerBlue" />
+                                            <BoxView HeightRequest="1" Color="Red"/>
+                                            <CollectionView IsEnabled="False" SelectionMode="Single">
                                                 <CollectionView.ItemsSource>
                                                     <x:Array Type="{x:Type x:String}">
-                                                        <x:String>C:\Users\Babürşah Baz\Downloads</x:String>
-                                                        <x:String>C:\Users\Babürşah Baz\Downloads</x:String>
-                                                        <x:String>C:\Users\Babürşah Baz\Downloads</x:String>
-                                                        <x:String>C:\Users\Babürşah Baz\Downloads</x:String>
-                                                        <x:String>C:\Users\Babürşah Baz\Downloads</x:String>
+                                                        <x:String>C:\Users\Downloads...</x:String>
+                                                        <x:String>C:\Users\Downloads...</x:String>
+                                                        <x:String>C:\Users\Downloads...</x:String>
+                                                        <x:String>C:\Users\Downloads...</x:String>
+                                                        <x:String>C:\Users\Downloads...</x:String>
                                                     </x:Array>
                                                 </CollectionView.ItemsSource>
 
@@ -341,7 +362,7 @@ CornerRadius="0"
                                 </Tc:Expander.Content>
                             </Tc:Expander>
 
-                            <Tc:Expander>
+                            <!--<Tc:Expander>
                                 <Tc:Expander.Header>
                                     <Frame BackgroundColor="#3D3B40" 
             Padding="0" 
@@ -382,42 +403,42 @@ CornerRadius="0"
 
                                     </Frame>
                                 </Tc:Expander.Content>
-                            </Tc:Expander>
+                            </Tc:Expander>-->
                             <Tc:Expander>
                                 <Tc:Expander.Header>
                                     <Frame BackgroundColor="#3D3B40" 
 Padding="0" 
 HeightRequest="50"
 CornerRadius="0"
->
+BorderColor="#3D3B40">
                                         <StackLayout Padding="15,0" Orientation="Horizontal">
-                                            <Label VerticalOptions="Center" FontAttributes="Bold" Text="AI-Visualizer"/>
+                                            <Label TextColor="Gray" VerticalOptions="Center" FontAttributes="Bold" Text="AI-Visualizer"/>
                                         </StackLayout>
                                     </Frame>
                                 </Tc:Expander.Header>
                                 <Tc:Expander.Content>
-                                    <Frame  Padding="0" CornerRadius="0" BackgroundColor="Transparent">
+                                    <Frame  BorderColor="#3D3B40" Padding="0" CornerRadius="0" BackgroundColor="Transparent">
                                         <StackLayout Padding="15" Spacing="15">
                                             <StackLayout Orientation="Horizontal">
-                                                <Label VerticalOptions="Center" HorizontalOptions="StartAndExpand" Text="AI-Mode"/>
-                                                <Switch VerticalOptions="Center"/>
+                                                <Label TextColor="Gray" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Text="AI-Mode"/>
+                                                <Switch IsEnabled="False" VerticalOptions="Center"/>
                                             </StackLayout>
-                                            <Picker Title="Line Color" TitleColor="White"/>
+                                            <Picker  Title="Line Color" IsEnabled="False" TitleColor="Gray" TextColor="White"/>
                                             <StackLayout>
-                                                <Label Text="AI-Line Thickess" HorizontalTextAlignment="Start"></Label>
+                                                <Label Text="AI-Line Thickess" TextColor="Gray" HorizontalTextAlignment="Start"></Label>
                                                 <StackLayout Orientation="Horizontal">
-                                                    <Slider Value="5" Minimum="0" VerticalOptions="Center" Maximum="20" HorizontalOptions="FillAndExpand"/>
-                                                    <Label Text="5" VerticalOptions="Center"/>
+                                                    <Slider IsEnabled="False" Value="5" Minimum="0" VerticalOptions="Center" Maximum="20" HorizontalOptions="FillAndExpand"/>
+                                                    <Label TextColor="Gray" Text="5" VerticalOptions="Center"/>
                                                 </StackLayout>
 
                                             </StackLayout>
 
-                                            <Picker Title="Point Color" TitleColor="White"/>
+                                            <Picker IsEnabled="False" Title="Point Color" TitleColor="Gray" TextColor="White"/>
                                             <StackLayout>
-                                                <Label Text="AI Point Size" HorizontalTextAlignment="Start"></Label>
+                                                <Label TextColor="Gray" Text="AI Point Size" HorizontalTextAlignment="Start"></Label>
                                                 <StackLayout Orientation="Horizontal">
-                                                    <Slider Value="5" Minimum="0" VerticalOptions="Center" Maximum="20" HorizontalOptions="FillAndExpand"/>
-                                                    <Label Text="5" VerticalOptions="Center"/>
+                                                    <Slider IsEnabled="False" Value="5" Minimum="0" VerticalOptions="Center" Maximum="20" HorizontalOptions="FillAndExpand"/>
+                                                    <Label TextColor="Gray" Text="5" VerticalOptions="Center"/>
                                                 </StackLayout>
 
                                             </StackLayout>
@@ -436,9 +457,10 @@ CornerRadius="0"
                 </StackLayout>
             </ScrollView>
 
-            <AbsoluteLayout BackgroundColor="Black" Padding="0" Grid.Column="1">
+            <AbsoluteLayout  Padding="0" Grid.Column="1">
                 <AbsoluteLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_Double" NumberOfTapsRequired="2"/>
                 </AbsoluteLayout.GestureRecognizers>
                 <Grid Padding="0" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
                     <Grid.ColumnDefinitions>
@@ -450,7 +472,7 @@ CornerRadius="0"
                         <RowDefinition Height="45"/>
                     </Grid.RowDefinitions>
                     <Image  Margin="5" BackgroundColor="Transparent" Grid.ColumnSpan="2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Aspect="AspectFit"/>
-
+                
                     <Tc:MediaElement 
                      
                         Loaded="MediaElement1_Loaded"
@@ -458,6 +480,114 @@ CornerRadius="0"
                         BackgroundColor="Transparent"  ShouldShowPlaybackControls="False" x:Name="MediaElement1"  Grid.ColumnSpan="2">
 
                     </Tc:MediaElement>
+                    <Grid Padding="0" IsVisible="false" x:Name="aciolcergrid" BackgroundColor="Transparent" Grid.ColumnSpan="2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <BoxView HeightRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Row="0" Grid.ColumnSpan="32"/>
+                        <BoxView HeightRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Row="1" Grid.ColumnSpan="32"/>
+                        <BoxView HeightRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Row="2" Grid.ColumnSpan="32"/>
+                        <BoxView HeightRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Row="3" Grid.ColumnSpan="32"/>
+                        <BoxView HeightRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Row="4" Grid.ColumnSpan="32"/>
+                        <BoxView HeightRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Row="5" Grid.ColumnSpan="32"/>
+                        <BoxView HeightRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Row="6" Grid.ColumnSpan="32"/>
+                        <BoxView HeightRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Row="7" Grid.ColumnSpan="32"/>
+                        <BoxView HeightRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Row="8" Grid.ColumnSpan="32"/>
+                        <BoxView HeightRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Row="9" Grid.ColumnSpan="32"/>
+                        <BoxView HeightRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Row="10" Grid.ColumnSpan="32"/>
+                        <BoxView HeightRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Row="11" Grid.ColumnSpan="32"/>
+                        <BoxView HeightRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Row="12" Grid.ColumnSpan="32"/>
+                        <BoxView HeightRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Row="13" Grid.ColumnSpan="32"/>
+                        <BoxView HeightRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Row="14" Grid.ColumnSpan="32"/>
+                        <BoxView HeightRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Row="15" Grid.ColumnSpan="32"/>
+                        <BoxView HeightRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Row="16" Grid.ColumnSpan="32"/>
+                        <BoxView HeightRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Row="17" Grid.ColumnSpan="32"/>
+
+
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="0" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="1" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="2" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="3" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="4" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="5" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="6" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="7" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="8" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="9" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="10" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="11" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="12" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="13" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="14" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="15" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="16" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="17" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="18" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="19" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="20" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="21" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="22" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="23" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="24" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="25" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="26" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="27" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="28" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="29" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="30" Grid.RowSpan="18"/>
+                        <BoxView WidthRequest="1" BackgroundColor="Transparent" Color="Red" Grid.Column="31" Grid.RowSpan="18"/>
+                    </Grid>
                     <AbsoluteLayout x:Name="GoniometerAbsoluteLayout" Grid.ColumnSpan="2" BackgroundColor="Transparent"/>
                     <Tc:DrawingView ZIndex="3" LineWidth="10" Loaded="myDrawingView_Loaded" LineColor="Red" IsEnabled="False"  x:Name="myDrawingView" BackgroundColor="Transparent" Grid.ColumnSpan="2"/>
                     <StackLayout Spacing="15" Orientation="Horizontal" Padding="15,0"  Grid.Row="1" Grid.ColumnSpan="2">

@@ -337,6 +337,32 @@ public partial class VisualizerPage : ContentPage
         }
     }
 
+    private void TapGestureRecognizer_Tapped_Double(object sender, TappedEventArgs e)
+    {
+        if(aciolcergrid.IsVisible) 
+        {
+        aciolcergrid.IsVisible = false;
+
+        }
+        else
+        {
+            aciolcergrid.IsVisible = true;
+        }
+    }
+
+    private void ToolbarItem_ClickedGrid(object sender, EventArgs e)
+    {
+        if (aciolcergrid.IsVisible)
+        {
+            aciolcergrid.IsVisible = false;
+
+        }
+        else
+        {
+            aciolcergrid.IsVisible = true;
+        }
+    }
+
     private void GoniometerLineThickness_ValueChanged(object sender, ValueChangedEventArgs e)
     {
         line.StrokeThickness = (int)e.NewValue;
@@ -364,77 +390,81 @@ public partial class VisualizerPage : ContentPage
 
         }
     }
-    private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
-    {
-        if (!myDrawingView.IsEnabled)
-        {
-            if (GoniometerRadioButton.IsChecked)
+    private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+    {         
+        
+            if (!myDrawingView.IsEnabled)
             {
-                if (!GoniometerAbsoluteLayout.Children.Contains(boxView1))
+                if (GoniometerRadioButton.IsChecked)
                 {
-                    GoniometerAbsoluteLayout.Children.Add(boxView1);
-                    GoniometerAbsoluteLayout.Children.Add(boxView2);
-                    GoniometerAbsoluteLayout.Children.Add(boxView3);
-                    GoniometerAbsoluteLayout.Children.Add(line);
+                    if (!GoniometerAbsoluteLayout.Children.Contains(boxView1))
+                    {
+                        GoniometerAbsoluteLayout.Children.Add(boxView1);
+                        GoniometerAbsoluteLayout.Children.Add(boxView2);
+                        GoniometerAbsoluteLayout.Children.Add(boxView3);
+                        GoniometerAbsoluteLayout.Children.Add(line);
 
-                }
-                tiklamaSayisi++; Microsoft.Maui.Graphics.Point? relativeToContainerPosition = e.GetPosition((View)sender);
-                double x = relativeToContainerPosition.Value.X;
-                double y = relativeToContainerPosition.Value.Y;
-                // AbsoluteLayout result = sender as AbsoluteLayout;
+                    }
+                    tiklamaSayisi++; Microsoft.Maui.Graphics.Point? relativeToContainerPosition = e.GetPosition((View)sender);
+                    double x = relativeToContainerPosition.Value.X;
+                    double y = relativeToContainerPosition.Value.Y;
+                    // AbsoluteLayout result = sender as AbsoluteLayout;
 
-                switch (tiklamaSayisi)
-                {
-                    case 1:
-                        x1 = x;
-                        y1 = y;
-                        GoniometerAbsoluteLayout.SetLayoutBounds(boxView1, new Rect(x - 50, y - 50, 100, 100));
+                    switch (tiklamaSayisi)
+                    {
+                        case 1:
+                            x1 = x;
+                            y1 = y;
+                            GoniometerAbsoluteLayout.SetLayoutBounds(boxView1, new Rect(x - 50, y - 50, 100, 100));
 
-                        break;
-                    case 2:
-                        x2 = x;
-                        y2 = y;
-                        GoniometerAbsoluteLayout.SetLayoutBounds(boxView2, new Rect(x - 50, y - 50, 100, 100));
+                            break;
+                        case 2:
+                            x2 = x;
+                            y2 = y;
+                            GoniometerAbsoluteLayout.SetLayoutBounds(boxView2, new Rect(x - 50, y - 50, 100, 100));
 
-                        break;
-                    case 3:
-                        x3 = x;
-                        y3 = y;
-                        GoniometerAbsoluteLayout.SetLayoutBounds(boxView3, new Rect(x - 50, y - 50, 100, 100));
+                            break;
+                        case 3:
+                            x3 = x;
+                            y3 = y;
+                            GoniometerAbsoluteLayout.SetLayoutBounds(boxView3, new Rect(x - 50, y - 50, 100, 100));
 
-                        tiklamaSayisi = 0;
+                            tiklamaSayisi = 0;
 
-                        line.Points = new Microsoft.Maui.Controls.PointCollection
+                            line.Points = new Microsoft.Maui.Controls.PointCollection
                 {
                     new Microsoft.Maui.Graphics.Point(x1, y1),
                     new Microsoft.Maui.Graphics.Point(x2, y2),
                     new Microsoft.Maui.Graphics.Point(x3, y3)
                 };
-                        //line.Stroke = SolidColorBrush.Green;
-                        //line.StrokeThickness = 2;
-                        double angle = Math.Atan2(y3 - y2, x3 - x2) - Math.Atan2(y1 - y2, x1 - x2);
-                        if (angle > 0)
-                        {
-                            angle = angle * (180 / Math.PI);
-                            LabelAciOlcer1.Text = string.Format("{0:F2}", angle);
-                            LabelAciOlcer2.Text = string.Format("{0:F2}", (360 - angle));
-                        }
-                        else
-                        {
-                            //angle = angle * (-1);
-                            angle = angle * (180 / Math.PI);
-                            LabelAciOlcer1.Text = string.Format("{0:F2}", angle);
-                            LabelAciOlcer2.Text = string.Format("{0:F2}", (360 + angle));
-                        }
-                        //angle = angle * (180 / Math.PI);
-                        //LabelAciOlcer1.Text = string.Format("{0:F2}", angle);
-                        //LabelAciOlcer2.Text = string.Format("{0:F2}", (360 - angle));
-                        break;
-                }
+                            //line.Stroke = SolidColorBrush.Green;
+                            //line.StrokeThickness = 2;
+                            double angle = Math.Atan2(y3 - y2, x3 - x2) - Math.Atan2(y1 - y2, x1 - x2);
+                            if (angle > 0)
+                            {
+                                angle = angle * (180 / Math.PI);
+                                LabelAciOlcer1.Text = string.Format("{0:F2}", angle);
+                                LabelAciOlcer2.Text = string.Format("{0:F2}", (360 - angle));
+                            }
+                            else
+                            {
+                                //angle = angle * (-1);
+                                angle = angle * (180 / Math.PI);
+                                LabelAciOlcer1.Text = string.Format("{0:F2}", angle);
+                                LabelAciOlcer2.Text = string.Format("{0:F2}", (360 + angle));
+                            }
+                            //angle = angle * (180 / Math.PI);
+                            //LabelAciOlcer1.Text = string.Format("{0:F2}", angle);
+                            //LabelAciOlcer2.Text = string.Format("{0:F2}", (360 - angle));
+                            break;
+                    }
 
 
+                
             }
+
         }
+      
     }
 
     private void TapGestureRecognizer_Tapped_AciSil(object sender, TappedEventArgs e)
