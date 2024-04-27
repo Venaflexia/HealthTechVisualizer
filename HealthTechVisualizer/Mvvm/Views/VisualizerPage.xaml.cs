@@ -325,6 +325,18 @@ public partial class VisualizerPage : ContentPage
         secondvalue = newsecondvalue * 1000000;
     }
 
+    private void ToolbarItem_ClickedAspect(object sender, EventArgs e)
+    {
+        if (MediaElement1.Aspect == Aspect.AspectFit)
+        {
+            MediaElement1.Aspect = Aspect.AspectFill;
+        }
+        else
+        {
+            MediaElement1.Aspect = Aspect.AspectFit;
+        }
+    }
+
     private void GoniometerLineThickness_ValueChanged(object sender, ValueChangedEventArgs e)
     {
         line.StrokeThickness = (int)e.NewValue;

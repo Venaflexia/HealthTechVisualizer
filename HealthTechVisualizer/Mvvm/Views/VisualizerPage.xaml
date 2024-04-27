@@ -28,8 +28,10 @@
         <Vm:DrawingVm x:Key="VmDrawing"/>
     </ContentPage.Resources>
 
-  
-    
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="buyut.png" Clicked="ToolbarItem_ClickedAspect"/>
+    </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
         <Grid >
@@ -450,6 +452,7 @@ CornerRadius="0"
                     <Image  Margin="5" BackgroundColor="Transparent" Grid.ColumnSpan="2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Aspect="AspectFit"/>
 
                     <Tc:MediaElement 
+                     
                         Loaded="MediaElement1_Loaded"
                         PositionChanged="MediaElement1_PositionChanged"
                         BackgroundColor="Transparent"  ShouldShowPlaybackControls="False" x:Name="MediaElement1"  Grid.ColumnSpan="2">
