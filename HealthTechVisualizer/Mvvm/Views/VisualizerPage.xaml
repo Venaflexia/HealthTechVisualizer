@@ -32,7 +32,7 @@
     
     
     <ContentPage.Content>
-        <Grid>
+        <Grid >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="280"/>
                 <ColumnDefinition Width="*"/>
@@ -43,51 +43,62 @@
                 
                     <StackLayout>
                         <StackLayout Padding="15,0" Orientation="Horizontal">
-                            <Label FontSize="20" Text="&#xf053;" FontFamily="FSO" VerticalOptions="Center">
+                            <!--<Label FontSize="20" Text="&#xf053;" FontFamily="FSO" VerticalOptions="Center">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="HeaderChangerTap" CommandParameter="Back"></TapGestureRecognizer>
                                 </Label.GestureRecognizers>
-                            </Label>
-                            <Label x:Name="MenuTitle" FontAttributes="Bold" FontSize="20" HorizontalOptions="CenterAndExpand" Text="Marker" VerticalOptions="Center"/>
-                            <Label FontSize="20" Text="&#xf054;" FontFamily="FSO" VerticalOptions="Center">
+                            </Label>-->
+                            <Image Source="onceki.png" HeightRequest="30" VerticalOptions="Center">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="HeaderChangerTap" CommandParameter="Back"></TapGestureRecognizer>
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <Label x:Name="MenuTitle" TextColor="White" FontAttributes="Bold" FontSize="20" HorizontalOptions="CenterAndExpand" Text="Marker" VerticalOptions="Center"/>
+                            <!--<Label FontSize="20" Text="&#xf054;" FontFamily="FSO" VerticalOptions="Center">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="HeaderChangerTap" CommandParameter="Next"/>
                                 </Label.GestureRecognizers>
-                            </Label>
+                            </Label>-->
+                            <Image Source="sonraki.png" HeightRequest="30" VerticalOptions="Center">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="HeaderChangerTap" CommandParameter="Next"></TapGestureRecognizer>
+                                </Image.GestureRecognizers>
+                            </Image>
                         </StackLayout>
                     </StackLayout>
-                    <IndicatorView IsEnabled="False" Margin="0,0,0,15" x:Name="TitleIndicator"/>
+                    <IndicatorView IsEnabled="False" IndicatorColor="Gray" SelectedIndicatorColor="White" Margin="0,0,0,15" x:Name="TitleIndicator"/>
                     <Grid VerticalOptions="FillAndExpand" BackgroundColor="#252525">
                         
                   
                     <StackLayout x:Name="MarkerLayout" IsVisible="true" VerticalOptions="FillAndExpand" Spacing="15"  BackgroundColor="#252525">
                                                         
-                    <Tc:Expander>
+                    <Tc:Expander >
                         <Tc:Expander.Header>
-                            <Frame BackgroundColor="#3D3B40" 
+                                    <Frame BackgroundColor="#3D3B40" 
                Padding="0" 
                HeightRequest="50"
                CornerRadius="0"
+                                    BorderColor="#3D3B40"
                >
                                 <StackLayout Padding="15,0" Orientation="Horizontal">
-                                    <Label VerticalOptions="Center" FontAttributes="Bold" Text="Shapes"/>
+                                            <Label VerticalOptions="Center" TextColor="Gray" FontAttributes="Bold" Text="Shapes"/>
                                 </StackLayout>
                             </Frame>
                         </Tc:Expander.Header>
                         <Tc:Expander.Content>
-                            <Frame>
+                                    <Frame BackgroundColor="Black" >
                                 <StackLayout>
                                     <StackLayout Orientation="Horizontal">
-                                        <RadioButton GroupName="goniometer" VerticalOptions="Center" Content="Triangle"/>
-                                        <Label FontSize="20" VerticalOptions="Center" TextColor="White" HorizontalOptions="EndAndExpand" Text="&#xf1f8;" FontFamily="FSO"/>
+                                        <RadioButton IsEnabled="False" GroupName="goniometer" VerticalOptions="Center" TextColor="White" Content="Triangle"/>
+                                        <!--<Label FontSize="20" VerticalOptions="Center" TextColor="White" HorizontalOptions="EndAndExpand" Text="&#xf1f8;" FontFamily="FSO"/>-->
                                     </StackLayout>
                                     <StackLayout Orientation="Horizontal">
-                                        <RadioButton GroupName="goniometer"  VerticalOptions="Center" Content="Circle"/>
-                                        <Label FontSize="20" VerticalOptions="Center" TextColor="White" HorizontalOptions="EndAndExpand" Text="&#xf1f8;" FontFamily="FSO"/>
+                                                <RadioButton IsEnabled="False"  GroupName="goniometer"  TextColor="White"  VerticalOptions="Center" Content="Circle"/>
+                                        <!--<Label FontSize="20" VerticalOptions="Center" TextColor="White" HorizontalOptions="EndAndExpand" Text="&#xf1f8;" FontFamily="FSO"/>-->
                                     </StackLayout>
                                     <StackLayout Orientation="Horizontal">
-                                        <RadioButton GroupName="goniometer"  VerticalOptions="Center" Content="Square"/>
-                                        <Label FontSize="20" VerticalOptions="Center" TextColor="White" HorizontalOptions="EndAndExpand" Text="&#xf1f8;" FontFamily="FSO"/>
+                                                <RadioButton IsEnabled="False"  GroupName="goniometer"  VerticalOptions="Center" Content="Square"/>
+                                        <!--<Label FontSize="20" VerticalOptions="Center" TextColor="White" HorizontalOptions="EndAndExpand" Text="&#xf1f8;" FontFamily="FSO"/>-->
                                     </StackLayout>
 
                                 </StackLayout>
@@ -96,28 +107,34 @@
                     </Tc:Expander>
                     <Tc:Expander>
                         <Tc:Expander.Header>
-                            <Frame BackgroundColor="#3D3B40" 
+                                    <Frame BackgroundColor="#3D3B40" 
+                                   BorderColor="#3D3B40"
                                    Padding="0" 
                                    HeightRequest="50"
                                    CornerRadius="0">
                                 <StackLayout Padding="15,0" Orientation="Horizontal">
-                                    <Label VerticalOptions="Center" FontAttributes="Bold" Text="Goniometer"/>
+                                    <Label VerticalOptions="Center" TextColor="White" FontAttributes="Bold" Text="Goniometer"/>
                                 </StackLayout>
                             </Frame>
                         </Tc:Expander.Header>
                         <Tc:Expander.Content>
-                            <Frame BackgroundColor="#252525" CornerRadius="0" Padding="0">
+                                    <Frame BackgroundColor="#252525" CornerRadius="0" Padding="0"  BorderColor="#3D3B40">
                                 <StackLayout Padding="15,15,15,0" Spacing="10">
 
                                     <StackLayout Orientation="Horizontal">
                                         <RadioButton x:Name="GoniometerRadioButton" CheckedChanged="RadioButton_CheckedChangedAciOlcer1" GroupName="goniometer"  VerticalOptions="Center" Content="Goniometer"/>
-                                        <Label HorizontalOptions="EndAndExpand" FontSize="20" VerticalOptions="Center" TextColor="White" Text="&#xf1f8;" FontFamily="FSO">
+                                        <!--<Label HorizontalOptions="EndAndExpand" FontSize="20" VerticalOptions="Center" TextColor="White" Text="&#xf1f8;" FontFamily="FSO">
                                             <Label.GestureRecognizers>
                                                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_AciSil"/>
                                             </Label.GestureRecognizers>
-                                        </Label>
+                                        </Label>-->
+                                                <Image HorizontalOptions="EndAndExpand" Source="cop.png" HeightRequest="22" VerticalOptions="Center">
+                                                    <Image.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_AciSil"/>
+                                                    </Image.GestureRecognizers>
+                                                </Image>
 
-                                    </StackLayout>
+                                            </StackLayout>
                                             <StackLayout Orientation="Horizontal">
                                                 <Label x:Name="LabelAciOlcer1"  FontAttributes="Bold" FontSize="18" VerticalOptions="Center" Text="?"/>
                                                 <Label Text="|" HorizontalOptions="CenterAndExpand"/>
@@ -152,14 +169,14 @@
                     </Tc:Expander>
                     <Tc:Expander >
                         <Tc:Expander.Header>
-                            <Frame  BackgroundColor="#3D3B40" Padding="0" HeightRequest="50" CornerRadius="0">
+                                    <Frame  BackgroundColor="#3D3B40" Padding="0" HeightRequest="50" CornerRadius="0"  BorderColor="#3D3B40">
                                 <StackLayout Padding="15,0" Orientation="Horizontal">
-                                    <Label VerticalOptions="Center" FontAttributes="Bold" Text="Drawing Mode"/>
+                                            <Label TextColor="White" VerticalOptions="Center" FontAttributes="Bold" Text="Drawing Mode"/>
                                 </StackLayout>
                             </Frame>
                         </Tc:Expander.Header>
                         <Tc:Expander.Content>
-                            <Frame CornerRadius="0" BackgroundColor="Transparent" Padding="0">
+                                    <Frame CornerRadius="0"  BorderColor="#3D3B40" BackgroundColor="Transparent" Padding="0">
 
 
                                   <StackLayout  Padding="0,15,0,0"  Spacing="15" >
@@ -195,20 +212,20 @@
                         </Tc:Expander.Content>
                     </Tc:Expander>
                    
-                    <Tc:Expander>
+                    <Tc:Expander >
                         <Tc:Expander.Header>
-                            <Frame BackgroundColor="#3D3B40" Padding="0" HeightRequest="50" CornerRadius="0">
+                                    <Frame  BorderColor="#3D3B40" BackgroundColor="#3D3B40" Padding="0" HeightRequest="50" CornerRadius="0">
                                 <StackLayout Padding="15,0" Orientation="Horizontal">
-                                    <Label VerticalOptions="Center" FontAttributes="Bold" Text="Record"/>
+                                            <Label TextColor="Gray" VerticalOptions="Center" FontAttributes="Bold" Text="Record"/>
                                 </StackLayout>
                             </Frame>
                         </Tc:Expander.Header>
                         <Tc:Expander.Content>
-                            <Frame BackgroundColor="Black" CornerRadius="0" Padding="0">
+                                    <Frame  BorderColor="#3D3B40" BackgroundColor="Black" CornerRadius="0" Padding="0">
                                 <StackLayout Spacing="15" Padding="15">
                                     <Image  x:Name="RecordingImage" HeightRequest="150"  BackgroundColor="Gray"/>
-                                    <Button Text="Save" CornerRadius="5" HeightRequest="30" FontAttributes="Bold" BackgroundColor="#696C71" TextColor="White"/>
-                                    <Button Text="Delete" CornerRadius="5" BackgroundColor="#31363F" FontAttributes="Bold" TextColor="White"/>
+                                            <Button IsEnabled="False"  Text="Save" CornerRadius="5" HeightRequest="30" FontAttributes="Bold" BackgroundColor="#696C71" TextColor="White"/>
+                                            <Button IsEnabled="False"  Text="Delete" CornerRadius="5" BackgroundColor="#31363F" FontAttributes="Bold" TextColor="White"/>
                                 </StackLayout>
                             </Frame>
                         </Tc:Expander.Content>
@@ -441,7 +458,26 @@ CornerRadius="0"
                     <AbsoluteLayout x:Name="GoniometerAbsoluteLayout" Grid.ColumnSpan="2" BackgroundColor="Transparent"/>
                     <Tc:DrawingView ZIndex="3" LineWidth="10" Loaded="myDrawingView_Loaded" LineColor="Red" IsEnabled="False"  x:Name="myDrawingView" BackgroundColor="Transparent" Grid.ColumnSpan="2"/>
                     <StackLayout Spacing="15" Orientation="Horizontal" Padding="15,0"  Grid.Row="1" Grid.ColumnSpan="2">
-                        <Label VerticalOptions="Center" Text="&#xf04a;" FontFamily="FSO">
+                        <Image Source="geri.png" Margin="0" HeightRequest="25" VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_Back"/>
+                            </Image.GestureRecognizers>
+                            <FlyoutBase.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="0,01" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="0,02" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="0,05" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="0,1" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="0,2" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="0,5" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="1" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="2" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="5" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                </MenuFlyout>
+                            </FlyoutBase.ContextFlyout>
+                        </Image>
+
+                        <!--<Label VerticalOptions="Center" Text="&#xf04a;" FontFamily="FSO">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_Back"></TapGestureRecognizer>
                             </Label.GestureRecognizers>
@@ -458,13 +494,36 @@ CornerRadius="0"
                                     <MenuFlyoutItem Text="5" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
                                 </MenuFlyout>
                             </FlyoutBase.ContextFlyout>
-                        </Label>
-                        <Label VerticalOptions="Center" Text="&#xf04b;" x:Name="LblVideoStartStop" FontFamily="FSO">
+                        </Label>-->
+                        <Image Source="baslat.png" HeightRequest="25" Margin="0" VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizerPlayPouse_Tapped"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <!--<Label VerticalOptions="Center" Text="&#xf04b;" x:Name="LblVideoStartStop" FontFamily="FSO">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizerPlayPouse_Tapped"/>
                             </Label.GestureRecognizers>
-                        </Label>
-                        <Label VerticalOptions="Center"  Text="&#xf04e;" FontFamily="FSO">
+                        </Label>-->
+                        <Image Source="ileri.png" Margin="0" HeightRequest="25" VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_Forward"/>
+                            </Image.GestureRecognizers>
+                            <FlyoutBase.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="0,01" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="0,02" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="0,05" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="0,1" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="0,2" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="0,5" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="1" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="2" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                    <MenuFlyoutItem Text="5" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
+                                </MenuFlyout>
+                            </FlyoutBase.ContextFlyout>
+                        </Image>
+                        <!--<Label VerticalOptions="Center"  Text="&#xf04e;" FontFamily="FSO">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_Forward"/>
                             </Label.GestureRecognizers>
@@ -481,7 +540,7 @@ CornerRadius="0"
                                     <MenuFlyoutItem Text="5" Clicked="MenuFlyoutItem_ClickedSelectSecondBack"/>
                                 </MenuFlyout>
                             </FlyoutBase.ContextFlyout>
-                        </Label>
+                        </Label>-->
                         <Slider
                             ValueChanged="mySliderVideo_ValueChanged"
                            x:Name="mySliderVideo"                         
@@ -489,11 +548,16 @@ CornerRadius="0"
                            HorizontalOptions="FillAndExpand"                    
                            MinimumTrackColor="Red" 
                            MaximumTrackColor="Gray"/>
-                        <Label x:Name="LblMute" VerticalOptions="Center" Text="&#xf027;" FontFamily="FSO">
+                        <!--<Label x:Name="LblMute" VerticalOptions="Center" Text="&#xf027;" FontFamily="FSO">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_Mute"/>
                             </Label.GestureRecognizers>
-                        </Label>
+                        </Label>-->
+                        <Image Source="sound.png" VerticalOptions="Center" HeightRequest="25">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_Mute"/>
+                            </Image.GestureRecognizers>
+                        </Image>
                     </StackLayout>
                 </Grid>
             </AbsoluteLayout>

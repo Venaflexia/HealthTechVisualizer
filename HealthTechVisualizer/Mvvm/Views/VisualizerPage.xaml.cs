@@ -21,8 +21,13 @@ public partial class VisualizerPage : ContentPage
 		InitializeComponent();
 		MenuList = new List<string>();
 		MenuIndex = 1;
-	}
+
+      
+
+    }
   
+   
+
     protected override void OnAppearing()
     {
         base.OnAppearing();
@@ -145,15 +150,20 @@ public partial class VisualizerPage : ContentPage
 
     private void TapGestureRecognizerPlayPouse_Tapped(object sender, TappedEventArgs e)
     {
+        Image senderr=sender as Image;
         if (MediaElement1.CurrentState == MediaElementState.Paused || MediaElement1.CurrentState == MediaElementState.Stopped)
         {
             MediaElement1.Play();
-            LblVideoStartStop.Text = "\uf04d";
+            //  LblVideoStartStop.Text = "\uf04d";
+            senderr.Source = "durdur.png";
+
         }
         else
         {
             MediaElement1.Pause();
-            LblVideoStartStop.Text = "\uf04b";
+            senderr.Source = "baslat.png";
+          //  LblVideoStartStop.Text = "\uf04b";
+
         }
     }
     double secondvalue = 50000;
@@ -293,15 +303,18 @@ public partial class VisualizerPage : ContentPage
 
     private void TapGestureRecognizer_Tapped_Mute(object sender, TappedEventArgs e)
     {
+        Image senderr = sender as Image;
         if (MediaElement1.ShouldMute)
         {
             MediaElement1.ShouldMute = false;
-            LblMute.Text = "\uf028";
+            // LblMute.Text = "\uf028";
+            senderr.Source = "sound.png";
         }
         else
         {
             MediaElement1.ShouldMute=true;
-            LblMute.Text = "\uf6a9";
+            //  LblMute.Text = "\uf6a9";
+            senderr.Source = "mute.png";
         }
     }
 
